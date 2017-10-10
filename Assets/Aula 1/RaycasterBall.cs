@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RaycasterBall : MonoBehaviour {
 
@@ -14,9 +15,20 @@ public class RaycasterBall : MonoBehaviour {
         r = new Ray();
         rh = new RaycastHit();
 	}
-	
-	// Update is called once per frame
-	void FixedUpdate ()
+
+    private void OnTriggerExit(Collider other)
+    {
+        //if leaves the boundary collider, game over
+        if (other.gameObject.tag == "Boundary")
+        {
+            //Debug.Log("Game Over!");
+            //reset the scene
+            SceneManager.LoadScene(0);
+        }
+    }
+
+    // Update is called once per frame
+    void FixedUpdate ()
     {
         r.origin = transform.position;
         r.direction = velocity.normalized;
@@ -30,7 +42,7 @@ public class RaycasterBall : MonoBehaviour {
 
 
         GameManager gm = Component.FindObjectOfType<GameManager>();
-        if(transform.position.x < gm.leftBorder)
+        /*if(transform.position.x < gm.leftBorder)
         {
 
         }
@@ -38,6 +50,6 @@ public class RaycasterBall : MonoBehaviour {
         {
 
         }
-
+        */
     }
 }
