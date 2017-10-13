@@ -23,7 +23,7 @@ public class RaycasterBall : MonoBehaviour {
         {
             //Debug.Log("Game Over!");
             //reset the scene
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
@@ -42,14 +42,5 @@ public class RaycasterBall : MonoBehaviour {
 
 
         GameManager gm = Component.FindObjectOfType<GameManager>();
-        /*if(transform.position.x < gm.leftBorder)
-        {
-
-        }
-        if (transform.position.x > gm.rightBorder)
-        {
-
-        }
-        */
     }
 }
