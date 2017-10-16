@@ -5,13 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class RaycasterBall : MonoBehaviour {
 
+    //velocity vector
     public Vector3 velocity;
+
+    //Game Manager script reference
+    private GameManager gm;
 
     Ray r;
     RaycastHit rh;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
+        //get the game manager reference
+        gm = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>();
+    }
+
+    // Use this for initialization
+    void Start () {
         r = new Ray();
         rh = new RaycastHit();
 	}
@@ -30,17 +40,25 @@ public class RaycasterBall : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate ()
     {
+        //ball position
         r.origin = transform.position;
+        //direction ball is going, normalized
         r.direction = velocity.normalized;
+
+        //if the ball is colliding with the borders or paddles
         if (Physics.Raycast(r, out rh, velocity.magnitude * Time.fixedDeltaTime + 0.01f))
         {
+            //ball is in the impact point
             transform.position = rh.point;
+            //reflect the velocity vector
             velocity = Vector3.Reflect(velocity, rh.normal);
-        }
+
+            //update score
+            gm.UpdateScore();
+        }//otherwise, just keep moving
         else
+        {
             transform.position += velocity * Time.fixedDeltaTime;
-
-
-        GameManager gm = Component.FindObjectOfType<GameManager>();
+        }
     }
 }
