@@ -9,7 +9,7 @@ public class Acelerador : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        var b = other.GetComponent<RaycasterBall>();
+        RaycasterBall b = other.GetComponent<RaycasterBall>();
         if (b != null)
         {
             b.velocity += b.velocity.normalized * increasedSpeed;

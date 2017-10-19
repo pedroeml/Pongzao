@@ -37,6 +37,15 @@ public class RaycasterBall : MonoBehaviour {
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        //if it is some powerup
+        if(other.gameObject.tag == "PowerUp")
+        {
+            other.gameObject.GetComponent<PowerUp>().DoStuff();
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate ()
     {
@@ -50,11 +59,15 @@ public class RaycasterBall : MonoBehaviour {
         {
             //ball is in the impact point
             transform.position = rh.point;
+            
             //reflect the velocity vector
             velocity = Vector3.Reflect(velocity, rh.normal);
 
-            //update score
-            gm.UpdateScore();
+            //update score if colliding with paddles
+            if (rh.transform.gameObject.tag == "Paddle")
+            {
+                gm.UpdateScore();
+            }
         }//otherwise, just keep moving
         else
         {
