@@ -16,6 +16,15 @@ public class Acelerador : MonoBehaviour {
             effect.transform.position = b.transform.position;
             effect.Play();
         }
+
+        PhysicBall pb = other.GetComponent<PhysicBall>();
+        if (pb != null)
+        {
+            var r = pb.GetComponent<Rigidbody>();
+            r.AddForce(r.velocity.normalized * increasedSpeed, ForceMode.Impulse);
+            effect.transform.position = pb.transform.position;
+            effect.Play();
+        }
     }
     
 }
