@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Acelerador : MonoBehaviour {
 
-    public float increasedSpeed = 1;
+    public float increasedSpeed = 0.7f;
     public ParticleSystem effect;
 
     private void OnTriggerEnter(Collider other)

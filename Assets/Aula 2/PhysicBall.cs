@@ -12,6 +12,7 @@ public class PhysicBall : MonoBehaviour {
     void Start () {
         gm = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>();
         GetComponent<Rigidbody>().AddForce(startForce, mode);
+		GetComponent<Rigidbody>().GetComponent<Renderer>().material.color = Color.red;
 	}
     private void OnTriggerExit(Collider other)
     {

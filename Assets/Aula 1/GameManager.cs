@@ -32,6 +32,16 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //QualitySettings.antiAliasing = 80;
+		//find the paddles
+		GameObject[] paddles = GameObject.FindGameObjectsWithTag("Paddle");
+
+		//for each of them
+		foreach (GameObject pad in paddles) {
+			pad.GetComponent<Renderer>().material.color = Color.yellow;
+		}
+
+		GameObject.Find("Border Top").GetComponent<Renderer>().material.color = Color.yellow;
+		GameObject.Find("Border Bottom").GetComponent<Renderer>().material.color = Color.yellow;
 	}
 	
 	// Update is called once per frame
@@ -49,6 +59,7 @@ public class GameManager : MonoBehaviour {
 
             //set the type as to make paddles bigger
             newPowerUp.GetComponent<PowerUp>().powerUpType = powerUpList[Random.Range(0, powerUpList.Count)];
+			newPowerUp.GetComponent<Renderer>().material.color = Color.red;
         }
 
         //if timer is set, score returns to normal after 5 seconds

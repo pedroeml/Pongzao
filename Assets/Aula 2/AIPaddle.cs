@@ -34,7 +34,7 @@ public class AIPaddle : MonoBehaviour {
             if (col.gameObject.name == "Border Bottom" && dir.z < 0)
             {
                 dir = Vector3.zero;
-                break;
+				break;
             }
         }
 
