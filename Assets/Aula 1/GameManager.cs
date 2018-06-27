@@ -37,11 +37,11 @@ public class GameManager : MonoBehaviour {
 
 		//for each of them
 		foreach (GameObject pad in paddles) {
-			pad.GetComponent<Renderer>().material.color = Color.yellow;
+			pad.GetComponent<Renderer>().material.color = Color.white;
 		}
 
-		GameObject.Find("Border Top").GetComponent<Renderer>().material.color = Color.yellow;
-		GameObject.Find("Border Bottom").GetComponent<Renderer>().material.color = Color.yellow;
+		GameObject.Find("Border Top").GetComponent<Renderer>().material.color = Color.black;
+		GameObject.Find("Border Bottom").GetComponent<Renderer>().material.color = Color.black;
 	}
 	
 	// Update is called once per frame
@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour {
         score += pointsToGrant;
 
         //update text in canvas
-        scoreText.text = "Score: " + score.ToString();
+        scoreText.text = "Joystick Up/Down button   Score: " + score.ToString();
     }
 
     //timer to reset score to original value
